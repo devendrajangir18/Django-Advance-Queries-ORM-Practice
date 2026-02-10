@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import pre_save, post_save, pre_delete, post_delete
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -13,8 +15,16 @@ class Students(models.Model):
 
 class Car(models.Model):
     car_name = models.CharField(max_length=100)
-    speed = models.IntegerField()
+    speed = models.IntegerField(default=50)
     car_count = models.IntegerField(default=1)
 
     def __str__(self) -> str:
         return self.car_name
+
+
+@receiver(post_save , sender= Car)
+def call_car_api(sender, instance, **kwargs):
+    print("Car Object Created")
+    print(sender, instance, kwargs)
+
+    # uncomment car.objects in home.views

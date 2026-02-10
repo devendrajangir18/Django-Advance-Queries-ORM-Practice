@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from vege.seed import *
 from .utils import send_email_to_client, send_email_with_attachment
 from django.conf import settings
+from home.models import Car
 
 # TO USE DJANGO TEMPLATES WE USE RENDER METHOD
 # django template apne aap utha leta hai to "templates" name hi folder banana pdta hai 
@@ -27,6 +28,9 @@ def send_email(request):
 
 def home(request):
     # seed_db(100) # call seed function to create Student Dummy data
+
+    # To create random number for car name object for django signals
+    # Car.objects.create(car_name =f"Nexon-{random.randint(0 , 100)}")
 
     peoples = [
         {'name': 'Ram', 'age': 26},
