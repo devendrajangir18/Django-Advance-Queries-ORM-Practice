@@ -1,5 +1,11 @@
 from django.db import models
 
+# Model Manager
+class StudentManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_deleted = False)
+    
+
 class Department(models.Model):
     department = models.CharField(max_length=100)
 
@@ -23,6 +29,13 @@ class Student(models.Model):
     student_age = models.IntegerField(default=18)
     student_address = models.TextField()
 
+    # Code for model manager
+    is_deleted = models.BooleanField(default=False) 
+
+    objects = StudentManager()
+    admin_objects = models.Manager()
+    #
+    
     def __str__(self) -> str:
         return self.student_name
     
