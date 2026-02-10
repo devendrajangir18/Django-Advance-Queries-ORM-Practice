@@ -1,13 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
-
+from vege.seed import *
+from .utils import send_email_to_client
 
 # TO USE DJANGO TEMPLATES WE USE RENDER METHOD
 # django template apne aap utha leta hai to "templates" name hi folder banana pdta hai 
 # and baki ka path mention krdo
 
+def send_email(request):
+    send_email_to_client()
+    return redirect('/')
+
 def home(request):
+    # seed_db(100) # call seed function to create Student Dummy data
 
     peoples = [
         {'name': 'Ram', 'age': 26},
