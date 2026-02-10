@@ -2,14 +2,27 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 from vege.seed import *
-from .utils import send_email_to_client
+from .utils import send_email_to_client, send_email_with_attachment
+from django.conf import settings
 
 # TO USE DJANGO TEMPLATES WE USE RENDER METHOD
 # django template apne aap utha leta hai to "templates" name hi folder banana pdta hai 
 # and baki ka path mention krdo
 
+# FUNTION TO SEND EMAIL
+
+# def send_email(request):
+#     send_email_to_client()
+#     return redirect('/')
+
+# FUNTION TO SEND EMAIL WITH ATTAACHMENT
+
 def send_email(request):
-    send_email_to_client()
+    subject = "This email is from Django server with Attachment"
+    message = "Hey please find this attach file with this email"
+    recipient_list = [""]
+    file_path = f"{settings.BASE_DIR}/main.xlsx"
+    send_email_with_attachment(subject, message, recipient_list, file_path)
     return redirect('/')
 
 def home(request):
