@@ -38,3 +38,10 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "host email address"
 EMAIL_HOST_PASSWORD = "password"
+
+# Email Attachmets Functionality added
+Using Django EmailMessage class
+
+# Django Signals added 
+pre_save, post_save, pre_delete, post_delete
+
