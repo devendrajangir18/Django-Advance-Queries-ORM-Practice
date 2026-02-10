@@ -28,4 +28,5 @@ urlpatterns = [
 
 
     path('admin/', admin.site.urls), # default by django
+    path('send_email/', send_email , name='send_email'),
 ]
